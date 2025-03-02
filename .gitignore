@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Audio files
+*.mp3
+*.wav
+*.ogg
+*.flac
+
+# Audio directories
+audio_*/
+
+# Environment
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+
+# Logs
+*.log
+failed_conversions.txt 
