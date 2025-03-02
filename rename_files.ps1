@@ -1,46 +1,56 @@
+# 获取所有包含"汉对照手机版"的txt文件
+$txtFiles = Get-ChildItem -Filter "*汉对照手机版*.txt"
+
 # 创建重命名映射
-$renames = @{
-    "1.txt" = "1 梵音陀罗尼-佛顶系列咒语 .txt"
-    "2.txt" = "2梵汉对照手机版-大佛顶、大佛顶心、大胜金刚顶真实大三昧耶、炽盛光佛顶、大力佛顶、一切如来金刚最胜王义利坚固爱染王.txt"
-    "3.txt" = "3梵汉对照手机版-佛顶尊胜、诸佛心能令一切众生安乐、一切佛心、菩提场庄严、宝箧印、佛心.txt"
-    "4.txt" = "4梵汉对照手机版-毗卢遮那、释迦牟尼、阿閦、宝生、无量光、观自在王、如来大慈、大力大护、十力、袈裟、心印、跋折罗.txt"
-    "5.txt" = "5梵汉对照手机版-净眼王、宝髻、药师瑠璃光等各个如来的陀罗尼，文殊师利宝藏陀罗尼经咒语.txt"
-    "6.txt" = "6梵汉对照手机版-般若波罗蜜多、佛眼、七俱胝佛母、准提、大孔雀明王、无染着、金胜佛母陀罗尼.txt"
-    "7.txt" = "7梵汉对照手机版-大宝积经无边庄严会无上陀罗尼(无上清净陀罗尼)、出现光明会殊胜陀罗尼.txt"
-    "8.txt" = "8梵汉对照手机版-出生无边门、宝楼阁善住秘密、大随求、《虚空藏菩萨问七佛陀罗尼咒经》陀罗尼.txt"
-    "9.txt" = "9无垢净光、智矩、大般涅盘经摧魔、持世、花聚、胜幢臂、一切诸法入无量门-A4 20241001.txt"
-    "10.txt" = "10 梵汉对照手机版-文殊师利菩萨陀罗尼 普贤菩萨陀罗尼.txt"
-    "11.txt" = "11梵汉对照手机版-千臂千眼千头千足千舌大悲根本陀罗尼 观自在菩萨根本真言 马首明王陀罗尼 十一面圣观自在菩萨陀罗尼.txt"
-    "12.txt" = "12 梵汉对照手机版-观自在、白衣观自在、多罗观自在、毗俱胝观自在.txt"
-    "13.txt" = "13 梵汉对照手机版-青颈大悲观自在、千句大悲咒.txt"
-    "14.txt" = "14梵汉对照手机版-不空羂索心王母、秘密心、秘密小心、自在王、心、心中心、身印陀罗尼。圣观自在菩萨千转灭罪、阿末[齿来]观自在、如意轮、观自在甘露、观自在闻持、观自在心.txt"
-    "15.txt" = "15 梵汉对照手机版-观自在、叶衣观自在、香王观自在、圣观自在、圣高髻王、能满诸愿王圣观自在菩萨陀罗尼卍.txt"
-    "16.txt" = "16 梵汉对照手机版-广大不空摩尼宝、最胜明王、奋怒王、悉地王、吉祥莲花、功德天与一切愿、大吉祥莲花心、普遍心印.txt"
-    "17.txt" = "17 梵汉对照手机版-不思议观、敬礼三昧耶、布施、净戒、安忍、精进、静.txt"
-    "18.txt" = "18 梵汉对照手机版-请召观世音菩萨、观自在奉送发遣、不空王根本莲华顶摩尼心、无垢宝莲花顶、溥遍解脱、大奋怒王.txt"
-    "19.txt" = "19 梵汉对照手机版-不空大可畏明王央俱舍、清净莲华明王央俱舍、不空思惟宝光、不空大灌顶光、不空金刚灌顶、不空摩尼供养、明王、观自在菩萨说一髻大罗剎尊.txt"
-    "20.txt" = "20 梵汉对照手机版-圣观自在菩萨闻持、除怖畏、除贼、灭罪、治各种病陀罗尼.txt"
-    "21.txt" = "21梵汉对照手机版-大势至、金刚手、弥勒、虚空藏、地藏、除盖障、无垢称、月光、无尽意、月光童子、药王陁罗尼、灭恶趣、除忧暗菩萨.txt"
-    "22.txt" = "22月藏菩萨、六门、八名普密、变食真言、楞伽经、除一切毒、思益经、降甘雨、止风雨、止恶风雹雨.txt"
-    "23.txt" = "23 梵汉对照手机版-基本的陀罗尼、治病、护命法门和妙法莲花经陀罗尼.txt"
-    "24.txt" = "24梵汉对照手机版-不动尊+无能胜+莽鸡菩萨.txt"
-    "25.txt" = "25梵汉对照手机版-阎曼德迦、步掷金刚、降三世、金刚手逊婆、金刚手的陀罗尼.txt"
-    "26.txt" = "26 梵汉对照手机版-军吒利明王.txt"
-    "27.txt" = "27梵汉对照手机版-大力金刚(秽迹金刚)、大力乌蒭涩摩、金刚商羯罗.txt"
-    "28.txt" = "28梵汉对照手机版-大可畏忿怒金刚笑明王、金翅鸟王、蘖噜拏王、大罗剎斯、圣迦抳金刚童子、大青面金刚、大元师药叉、阿吒婆拘鬼神、正了知药叉.txt"
-    "29.txt" = "29 梵汉对照手机版-蘘麌梨童女、摩利支天女、大吉祥天女、大辩才天女、佛伽那钵底圣者除障难陀罗尼.txt"
-    "30.txt" = "30 梵汉对照手机版-天部、天女的陀罗尼.txt"
+$renames = @{}
+foreach ($file in $txtFiles) {
+    $newName = $file.Name -replace "汉对照手机版", "音陀罗尼"
+    $renames[$file.Name] = $newName
 }
 
-# 创建音频文件夹重命名映射
+# 获取所有包含"汉对照手机版"的目录
+$folders = Get-ChildItem -Directory -Filter "*汉对照手机版*"
+
+# 创建目录重命名映射
 $dirRenames = @{}
-foreach ($key in $renames.Keys) {
-    $number = $key -replace '\.txt', ''
-    $dirName = "audio_$number"
-    $newName = $renames[$key] -replace '\.txt', ''
-    $newName = $newName -replace '^(\d+)\s*', '' # 移除文件名开头的数字和空格
-    $newDirName = "$($newName)_audio"
-    $dirRenames[$dirName] = $newDirName
+foreach ($folder in $folders) {
+    $folderName = $folder.Name
+    # 提取文件名前面的数字（如果有）
+    $numberMatch = [regex]::Match($folderName, "^(\d+)")
+    $number = ""
+    if ($numberMatch.Success) {
+        $number = $numberMatch.Groups[1].Value
+    }
+    else {
+        # 尝试匹配文件夹名中的数字
+        $numberMatch = [regex]::Match($folderName, "汉对照手机版-.*?(\d+)")
+        if ($numberMatch.Success) {
+            $number = $numberMatch.Groups[1].Value
+        }
+        else {
+            # 如果还是找不到，从关联的txt文件名中提取
+            foreach ($txtFile in $txtFiles) {
+                if ($folderName.Contains($txtFile.BaseName)) {
+                    $numberMatch = [regex]::Match($txtFile.Name, "^(\d+)")
+                    if ($numberMatch.Success) {
+                        $number = $numberMatch.Groups[1].Value
+                        break
+                    }
+                }
+            }
+        }
+    }
+    
+    # 如果找不到数字，则使用一个默认值
+    if ([string]::IsNullOrEmpty($number)) {
+        $number = (Get-Random -Minimum 100 -Maximum 999).ToString()
+    }
+    
+    # 创建新的文件夹名（替换文本并添加序号）
+    $newFolderName = $folderName -replace "汉对照手机版", "音陀罗尼"
+    $newFolderName = "$number $newFolderName"
+    
+    $dirRenames[$folderName] = $newFolderName
 }
 
 # 重命名txt文件
